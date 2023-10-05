@@ -33,7 +33,7 @@ const ProductClient = ({ data }: ProductClientProps) => {
           Add New
         </Button>
       </div>
-      <DataTable columns={columns} data={data} searchKey="label" />
+      <DataTable columns={columns} data={data} searchKey="name" />
       <div className="flex-col space-y-4">
         <Heading title="API" description="API calls for products" />
         <Separator />
