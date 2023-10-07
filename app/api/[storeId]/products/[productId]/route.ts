@@ -9,7 +9,7 @@ export async function GET(
   }) {
   try {
     if (!params.productId) {
-      return new NextResponse('Product id is j required', { status: 400 })
+      return new NextResponse('Product id is required', { status: 400 })
     }
 
     const product = await prismadb.product.findUnique({

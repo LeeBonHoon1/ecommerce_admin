@@ -5,17 +5,20 @@ import { NextResponse } from "next/server";
 export async function GET(
   req: Request,
   { params }: {
-    params: { catregoryId: string }
+    params: { categoryId: string }
   }) {
   try {
-    if (!params.catregoryId) {
-      return new NextResponse('Category id is j required', { status: 400 })
+    if (!params.categoryId) {
+      return new NextResponse('Category id is required', { status: 400 })
     }
 
     const category = await prismadb.category.findUnique({
       where: {
-        id: params.catregoryId,
+        id: params.categoryId,
       },
+      include: {
+        billboard: true
+      }
     })
 
     return NextResponse.json(category)
@@ -91,7 +94,7 @@ export async function DELETE(
     }
 
     if (!params.categoryId) {
-      return new NextResponse('Category id is j required', { status: 400 })
+      return new NextResponse('Category id is required', { status: 400 })
     }
 
     const storeByUserId = await prismadb.store.findFirst({
